@@ -1,9 +1,16 @@
 @echo off
 setlocal EnableDelayedExpansion
 
-:: Campus network account
+:: Load .env if exists (lower priority)
+if exist "%~dp0.env" (
+  for /f "usebackq tokens=1* delims==" %%a in ("%~dp0.env") do (
+    set "key=%%a"
+    if not "!key:~0,1!"=="#" if not "%%a"=="" set "%%a=%%b"
+  )
+)
+
+:: Script values (higher priority than .env, comment out to use .env values)
 set USERID=20xxxxxxxxx
-:: Campus network password
 set PASSWORD=abc123aaaa
 :: China Mobile: cmcc, China Telecom: telecom
 set CHANNEL=cmcc

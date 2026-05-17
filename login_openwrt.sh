@@ -1,8 +1,12 @@
 #!/bin/bash
 
-# 校园网账号
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+if [ -f "$SCRIPT_DIR/.env" ]; then
+  . "$SCRIPT_DIR/.env"
+fi
+
+# 以下变量优先于 .env，如需使用 .env 中的值请注释掉对应行
 USERID=20xxxxxxxxx
-# 校园网密码
 PASSWORD=abcdefxxxxxx
 # 中国移动：cmcc 中国电信：telecom
 CHANNEL=cmcc
